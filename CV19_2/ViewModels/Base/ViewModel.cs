@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CV19_2.ViewModels.Base
 {
-    internal abstract class ViewModel : INotifyPropertyChanged
+    internal abstract class ViewModel : INotifyPropertyChanged, IDisposable
     {
         public event PropertyChangedEventHandler PropertyChanged;
         /// <summary>
@@ -38,6 +38,34 @@ namespace CV19_2.ViewModels.Base
             field = value;
             OnPropertyChanged(PropertyName);
             return true;
+        }
+        /// <summary>
+        /// Для Диструктора (если он будет) необходимо вызывать Dispose с параметром (false)
+        /// </summary>
+        //~ViewModel()
+        //{
+        //    Dispose(false);
+        //}
+        private bool _Disposed;
+
+        /// <summary>
+        /// Для метода Dispose, его спец.параметр устанавливаем с флагом true
+        /// </summary>
+        public void Dispose()
+        {
+            Dispose(true);
+        }
+        /// <summary>
+        /// Пример реализации шаблон IDisposable, для классов, которые поддерживают наследование
+        /// Метод для освобождения управляемых ресурсов во время закрытия программы.
+        /// Имеет специальный параметр Disposing (который наследники смогут переопределить)
+        /// В данном случае, в нашей программе нечего освобождать - поэтому параметр устанавливаем в true.
+        /// </summary>
+        /// <param name="Disposing"></param>
+        protected virtual void Dispose(bool Disposing)
+        {
+            if(!Disposing || _Disposed) return;
+            _Disposed = true;
         }
     }
 }
