@@ -98,7 +98,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Data\" />
-    <Folder Include="Infrastructures\" />
+    <Folder Include="Infrastructures\Commands\Base\" />
     <Folder Include="Models\" />
     <Folder Include="Services\" />
   </ItemGroup>
