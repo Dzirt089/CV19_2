@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Input;
+using CV19_2.Infrastructures.Commands;
 using CV19_2.ViewModels.Base;
 
 namespace CV19_2.ViewModels
@@ -44,5 +47,39 @@ namespace CV19_2.ViewModels
             set => Set(ref _Status, value);
         }
         #endregion
+
+
+        #region Команды
+
+        #region CloseApplicationCommand
+        public ICommand CloseApplicationCommand { get; }
+        /// <summary>
+        /// Метод выполняется, когда команда выполняется
+        /// </summary>
+        /// <param name="p"></param>
+        private void OnCloseApplicationCommandExecuted(object p) 
+        {
+            Application.Current.Shutdown();
+        }
+        /// <summary>
+        /// В нашем случае, команда будет доступна для выполнения всегда. Поэтому метод возвращает true
+        /// </summary>
+        /// <param name="p"></param>
+        /// <returns></returns>
+        private bool CanCloseApplicationCommandExecute(object p) => true;
+        #endregion
+        #endregion
+
+        /// <summary>
+        /// Внутри конструктора создаем объкт команды. 
+        /// </summary>
+        public MainWindowViewModel()
+        {
+            #region Команды
+
+            CloseApplicationCommand = new LambdaCommand (OnCloseApplicationCommandExecuted, CanCloseApplicationCommandExecute);
+
+            #endregion
+        }
     }
 }
