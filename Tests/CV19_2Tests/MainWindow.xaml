@@ -1,12 +1,20 @@
-﻿<Window x:Class="CV19_2Tests.MainWindow"
+﻿<Window
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CV19_2Tests"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" x:Class="CV19_2Tests.MainWindow"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        
+        <Button Content="Button" HorizontalAlignment="Left" Height="71" Margin="306,132,0,0" VerticalAlignment="Top" Width="168"/>
+        <TextBox HorizontalAlignment="Left" Margin="320,315,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <ProgressBar HorizontalAlignment="Left" Height="24" Margin="320,262,0,0" VerticalAlignment="Top" Width="230"/>
+        <Slider HorizontalAlignment="Left" Margin="215,376,0,0" VerticalAlignment="Top" Width="208"/>
+
+        <materialDesign:PopupBox Content="PopupBox" HorizontalAlignment="Left" Margin="83,188,0,0" VerticalAlignment="Top" Width="112"/>
+        <materialDesign:Badged Content="Badged" HorizontalAlignment="Left" Height="38" Margin="488,63,0,0" VerticalAlignment="Top" Width="137"/>
+
     </Grid>
 </Window>
