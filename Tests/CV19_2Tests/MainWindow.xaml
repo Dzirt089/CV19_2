@@ -6,15 +6,18 @@
         xmlns:local="clr-namespace:CV19_2Tests"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" x:Class="CV19_2Tests.MainWindow"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="550" Width="800">
     <Grid>
-        <Button Content="Button" HorizontalAlignment="Left" Height="71" Margin="306,132,0,0" VerticalAlignment="Top" Width="168"/>
-        <TextBox HorizontalAlignment="Left" Margin="320,315,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <ProgressBar HorizontalAlignment="Left" Height="24" Margin="320,262,0,0" VerticalAlignment="Top" Width="230"/>
-        <Slider HorizontalAlignment="Left" Margin="215,376,0,0" VerticalAlignment="Top" Width="208"/>
+        <Button Content="Button" HorizontalAlignment="Left" Height="71" Margin="603,31,0,0" VerticalAlignment="Top" Width="168"/>
+        <TextBox HorizontalAlignment="Left" Margin="627,192,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <ProgressBar HorizontalAlignment="Left" Height="24" Margin="541,136,0,0" VerticalAlignment="Top" Width="230"/>
+        <Slider HorizontalAlignment="Left" Margin="563,244,0,0" VerticalAlignment="Top" Width="208"/>
+        <materialDesign:Clock HorizontalAlignment="Left" Margin="41,10,0,0" VerticalAlignment="Top" Height="549" Width="312"/>
+        <Ellipse HorizontalAlignment="Left" Height="54" Margin="464,391,0,0" Stroke="Black" VerticalAlignment="Top" Width="147"/>
+        <Label Content="Label" HorizontalAlignment="Left" Height="26" Margin="464,325,0,0" VerticalAlignment="Top" Width="147"/>
+        <RadioButton Content="RadioButton" HorizontalAlignment="Left" Height="33" Margin="353,192,0,0" VerticalAlignment="Top" Width="113"/>
+        <StatusBar HorizontalAlignment="Left" Height="17" Margin="563,295,0,0" VerticalAlignment="Top" Width="163"/>
 
-        <materialDesign:PopupBox Content="PopupBox" HorizontalAlignment="Left" Margin="83,188,0,0" VerticalAlignment="Top" Width="112"/>
-        <materialDesign:Badged Content="Badged" HorizontalAlignment="Left" Height="38" Margin="488,63,0,0" VerticalAlignment="Top" Width="137"/>
 
     </Grid>
 </Window>
