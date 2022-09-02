@@ -4,16 +4,29 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CV19_2"
+        xmlns:cmd="clr-namespace:CV19_2.Infrastructures.Commands"
         xmlns:vm="clr-namespace:CV19_2.ViewModels"
         Title="{Binding Title}"
         Height="450" Width="800" >
+    <Window.InputBindings>
+        <KeyBinding Modifiers="Alt" Key="Q" Command="{Binding CloseApplicationCommand}"/>
+    </Window.InputBindings>
     <Window.DataContext>
         <vm:MainWindowViewModel/>
     </Window.DataContext>
+    <Window.Resources>
+        <cmd:CloseApplicationCommand x:Key="CloseApplicationCommand"/>
+    </Window.Resources>
     <DockPanel>
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="Файл">
-                <MenuItem Header="Выход" Command="{Binding CloseApplicationCommand}"/>
+                <!--<MenuItem Header="Выход" Command="{Binding CloseApplicationCommand}"/>-->
+                <!--<MenuItem Header="Выход">
+                    <MenuItem.Command>
+                        <cmd:CloseApplicationCommand/>
+                    </MenuItem.Command>
+                </MenuItem>-->
+                <MenuItem Header="Выход" Command="{StaticResource CloseApplicationCommand}"/>
             </MenuItem>
             <MenuItem Header="Помощь">
                 <MenuItem Header="О Программе"/>
@@ -41,7 +54,11 @@
                     <Rectangle Grid.Column="0" Grid.Row="0" Fill="Blue" Margin="5,7" 
                                Stroke="Red" StrokeThickness="3" RadiusX="5" RadiusY="7"/>
                     <Ellipse Grid.Column="1" Grid.Row="0" Fill="Red" Stroke="Blue" 
-                             StrokeThickness="3"/>
+                             StrokeThickness="3">
+                        <Ellipse.InputBindings>
+                            <MouseBinding Command="{Binding CloseApplicationCommand}" MouseAction="LeftDoubleClick"/>
+                        </Ellipse.InputBindings>
+                    </Ellipse>
                     <GridSplitter Grid.Column="0" Grid.Row="0" Grid.RowSpan="2"
                                   HorizontalAlignment="Right" Width="4"/>
                 </Grid>
