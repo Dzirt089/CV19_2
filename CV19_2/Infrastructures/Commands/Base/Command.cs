@@ -15,7 +15,7 @@ namespace CV19_2.Infrastructures.Commands.Base
         /// </summary>
         public event EventHandler CanExecuteChanged
         {
-            add => CommandManager.RequerySuggested += value; 
+            add => CommandManager.RequerySuggested += value;
             remove => CommandManager.RequerySuggested -= value;
         }
         /// <summary>
@@ -31,4 +31,5 @@ namespace CV19_2.Infrastructures.Commands.Base
         /// <param name="parameter"></param>
         /// <exception cref="NotImplementedException"></exception>
         public abstract void Execute(object parameter);
+    }
 }
