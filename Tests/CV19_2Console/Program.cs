@@ -44,7 +44,7 @@ namespace CV19_2Console
             {
                 var line = data_reader.ReadLine();
                 if (string.IsNullOrWhiteSpace(line)) continue;
-                yield return line;
+                yield return line.Replace("Korea,","Korea -");
             }
         }
         /// <summary>
@@ -58,7 +58,34 @@ namespace CV19_2Console
             .Select(s => DateTime.Parse(s, CultureInfo.InvariantCulture))
             .ToArray();
 
+        private static IEnumerable<(string Contry, string Province, int[] Counts)> GetData()
+        {
+            var lines = GetDataLines()
+                .Skip(1)
+                .Select(line => line.Split(','));
 
+            foreach (var row in lines)   // Выделем сперва все данные в переменную, потом сгруппируем в кортеж и вернём его, чтобы было проще
+            {
+                var province = row[0].Trim();   //У каждой строки будем вызывать метод Trim(), который будет обрезать все лишнее в нашей строке (в плане пробелов, спец символов нечитаемых и т.д.)
+                var country_name = row[1].Trim(' ', '"'); //А вот для contry_name надо будет указать что конкретно мы хотим обрезать (пробелы и ковычки). ЗАпятаю не получится обрезать, это разделитель колонок и будут проблемы
+                var i = 0;
+                if (!int.TryParse(row[4], out int res))
+                    i = 1;
+                var counts = row.Skip(4 + i).Select(int.Parse).ToArray();
+                //var counts = row.Skip(4).Select(s => int.Parse(s)).ToArray(); //Так как 2 и 3 столбцом идут широта и долгота, мы пропускаем их. Остальное - это кол-во зараженных на дату
+                //Мы считали в каждую переменную данные по строчно. После чего, каждый из элементов мы превращаем в целое число
+
+
+                yield return (province, country_name, counts); //С помощью yield return возвращаем данные в виде кортежа. 
+            }
+            //foreach (var row in lines)
+            //{
+            //    var province = row[0].Trim();
+            //    var contry_name = row[1].Trim(' ', '"');
+            //    var count = row.Skip(4).Select(int.Parse).ToArray();
+            //    yield return (contry_name, province, count);
+            //}
+        }
 
         static void Main(string[] args)
         {
@@ -66,10 +93,12 @@ namespace CV19_2Console
 
             //foreach (var data_line in GetDataLines())
             //    Console.WriteLine(data_line);
-            var dates = GetDates();
-            Console.WriteLine(string.Join("\r\n", dates));
+            //var dates = GetDates();
+            //Console.WriteLine(string.Join("\r\n", dates));
 
-            Console.ReadLine();
+            var russia = GetData().FirstOrDefault(v=>v.Contry.Equals("Russia", StringComparison.OrdinalIgnoreCase));
+
+            Console.WriteLine(string.Join("\r\n", GetDates().Zip(russia.Counts, (date, count) => $"{date} - {count}")));
         }
     }
 }
