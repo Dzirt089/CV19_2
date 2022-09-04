@@ -112,6 +112,7 @@
     <Compile Include="Infrastructures\Commands\LambdaCommand.cs" />
     <Compile Include="Models\ConfimedCount.cs" />
     <Compile Include="Models\DataPoint.cs" />
+    <Compile Include="Models\Decanat\Student.cs" />
     <Compile Include="Models\PlaceInfo.cs" />
     <Compile Include="Models\CountryInfo.cs" />
     <Compile Include="Models\ProvinceInfo.cs" />
