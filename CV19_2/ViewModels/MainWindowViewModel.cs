@@ -20,6 +20,17 @@ namespace CV19_2.ViewModels
 
         public ObservableCollection<Group> Groups { get; set; }
 
+        #region SelectGroup : Group - выбранная группа
+
+        private Group _SelectGroup;
+        public Group SelectGroup
+        {
+            get => _SelectGroup;
+            set => Set(ref _SelectGroup, value);
+        }
+
+        #endregion
+
         #region TestDataPoints : IEnumerable<DataPoint> - Тестовый набор данных для визуализации графиков
         //НАм понадобиться сво-во для перечесления точек данных, которые мы будем строить на графике
         /// <summary>
