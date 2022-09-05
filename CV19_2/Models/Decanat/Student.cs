@@ -24,7 +24,7 @@ namespace CV19_2.Models.Decanat
         /// <summary>
         /// Свойство группы задаем ICollection<>, чтобы получить свободу выбора - какую коллекцию сюда добавлять. Это может быть Список, Массив, и все чо угодно, что может хранить студентов 
         /// </summary>
-        public ICollection<Student> Students { get; set; }
+        public IList<Student> Students { get; set; }
         public string Description { get; set; }
     }
 

@@ -44,6 +44,47 @@
             </StatusBar>
         </StatusBar>
         <TabControl>
+            <TabItem Header="Разнородные данные" Height="20" VerticalAlignment="Top">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="250"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <GroupBox Header="Элементы">
+                        <GroupBox.Resources>
+                            <DataTemplate DataType="{x:Type decanat:Group}">
+                                <TextBlock Text="{Binding Name, StringFormat=Группа {0}}"/>
+                            </DataTemplate>
+                            <DataTemplate DataType="{x:Type decanat:Student}">
+                                <TextBlock Text="{Binding Name, StringFormat=Студент {0}}"/>
+                            </DataTemplate>
+                            
+                        </GroupBox.Resources>
+                        <ListBox ItemsSource="{Binding CompositeCollection}"
+                                 SelectedItem="{Binding SelectedCompositeValue}"/>
+                    </GroupBox>
+                    <GroupBox Grid.Column="1">
+                        <GroupBox.Header>
+                            <TextBlock Text="Выбранный элемент"/>
+                        </GroupBox.Header>
+                        <GroupBox.Resources>
+                            <DataTemplate DataType="{x:Type decanat:Group}">
+                                <TextBlock Text="{Binding Name, StringFormat=Группа {0}}"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"
+                                           FontSize="30"/>
+                            </DataTemplate>
+                            <DataTemplate DataType="{x:Type decanat:Student}">
+                                <TextBlock Text="{Binding Name, StringFormat=Студент {0}}"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"
+                                           FontSize="30"/>
+                            </DataTemplate>
+                        </GroupBox.Resources>
+                        <ContentControl Content="{Binding SelectedCompositeValue}"/>
+                    </GroupBox>
+                </Grid>
+            </TabItem>
             <TabItem Header="Студенты">
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -51,7 +92,16 @@
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
                     <GroupBox Header="Группы" Grid.Column="0">
-                        <ListBox ItemsSource="{Binding Groups}" DisplayMemberPath="Name" SelectedItem="{Binding SelectGroup}" SelectedIndex="0"/>
+                        <ListBox ItemsSource="{Binding Groups}" SelectedItem="{Binding SelectGroup}" SelectedIndex="0">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate DataType="decanat:Group">
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="{Binding Name}"/>
+                                        <TextBlock Text="{Binding Students.Count, StringFormat=[Cтудентов : {0}]}" Margin="3,0,0,0"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
                     </GroupBox>
                     <GroupBox Grid.Column="1" Header="{Binding SelectGroup.Name, FallbackValue='Студенты', TargetNullValue='Группа не выбрана'}" >
                         <DataGrid ItemsSource="{Binding SelectGroup.Students}" AutoGenerateColumns="False" 
